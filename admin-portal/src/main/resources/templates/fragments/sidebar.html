@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="dashboard" class="list-group">
+		<a th:href="@{/}" class="list-group-item list-group-item-action active"><i class="fas fa-tachometer-alt"></i> Dash Board</a>
+		<a th:href="@{/orders}" class="list-group-item list-group-item-action"><i class="fas fa-chart-line"></i> Orders Management</a> 
+		<a th:href="@{/products(page=0)}" class="list-group-item list-group-item-action"><i class="fas fa-th-list"></i> Product Management</a>
+	</div>
+	<div th:fragment="orders" class="list-group">
+		<a th:href="@{/}" class="list-group-item list-group-item-action"><i class="fas fa-tachometer-alt"></i> Dash Board</a>
+		<a th:href="@{/orders}" class="list-group-item list-group-item-action active"><i class="fas fa-chart-line"></i> Orders Management</a> 
+		<a th:href="@{/products(page=0)}" class="list-group-item list-group-item-action"><i class="fas fa-th-list"></i> Product Management</a>
+	</div>
+	<div th:fragment="products" class="list-group">
+		<a th:href="@{/}" class="list-group-item list-group-item-action"><i class="fas fa-tachometer-alt"></i> Dash Board</a>
+		<a th:href="@{/orders}" class="list-group-item list-group-item-action"><i class="fas fa-chart-line"></i> Orders Management</a> 
+		<a th:href="@{/products(page=0)}" class="list-group-item list-group-item-action active"><i class="fas fa-th-list"></i> Product Management</a>
+	</div>
+</body>
+</html>

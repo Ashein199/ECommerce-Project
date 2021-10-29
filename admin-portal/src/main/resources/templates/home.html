@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head::app-head">
+</head>
+<body>
+
+	<div th:replace="fragments/navbar::app-navbar">
+	</div>
+
+	<div class="container-fluid py-5">
+		<div class="row">
+			<div th:insert="fragments/sidebar::dashboard" class="col-md-3">
+			</div>
+			<div class="col-md-9">
+			  <h1>Dash Board</h1>
+			</div>
+		</div>
+	</div>
+
+
+	<script th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

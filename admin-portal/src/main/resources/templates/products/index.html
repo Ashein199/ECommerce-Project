@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head::app-head">
+</head>
+<body>
+	<div th:replace="fragments/navbar::app-navbar"></div>
+	<div class="container-fluid py-5">
+		<div class="row">
+			<div th:insert="fragments/sidebar::products" class="col-md-3">
+			</div>
+			<div class="col-md-9">
+				<div class="card">
+					<div class="card-header">
+						<h1 class="h4 mb-0">
+							Product Management <a class="btn btn-primary btn-sm float-right"
+								th:href="@{/products/new}"><i class="fas fa-plus"></i> Add</a>
+						</h1>
+					</div>
+					<div class="card-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Name</th>
+									<th scope="col">Price</th>
+									<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="product:${products}">
+									<th th:text="${product.id}" scope="row"></th>
+									<td th:text="${product.name}"></td>
+									<td th:text="${product.price}"></td>
+									<td><a th:href="@{/products/edit(id=${product.id})}"
+										class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a> <a
+										th:href="@{/products/delete(id=${product.id})}"
+										class="btn btn-danger btn-sm ml-md-1"><i class="far fa-trash-alt"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<!-- Pagination -->
+						<nav aria-label="Page navigation example">
+						    
+							<ul  class="pagination justify-content-center">
+								<li class="page-item" th:classappend="${products.number==0}?disabled">
+								  <a class="page-link" th:href="@{/products(page=${products.number-1})}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+								</li>
+								<li th:each="pageNumber:${pageNumbers}" class="page-item" th:classappend="${pageNumber-1==products.number}?active"><a th:text="${pageNumber}" class="page-link" th:href="@{/products(page=${pageNumber-1})}"></a></li>
+								<li class="page-item" th:classappend="${products.number+1==products.totalPages}?disabled">
+								  <a class="page-link" th:href="@{/products(page=${products.number+1})}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+								</li>
+								
+							</ul>
+							
+						</nav>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

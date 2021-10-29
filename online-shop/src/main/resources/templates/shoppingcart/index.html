@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+	<h1 align="center">Shopping Cart</h1>
+	<br>
+	<br>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9 mx-auto">
+
+				<span>Total items =</span> <span
+					th:text="${cart.getCartItems().size()}"></span> <br>
+				<span>Total amount = </span><span th:text="${cart.total}"></span> Ks <br>
+				<br>
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+
+							<th scope="col">Product</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Sub-total</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr th:each="item:${items}">
+
+							<td th:text="${item.product.name}"></td>
+							<td th:text="${item.quantity}"></td>
+							<td th:text="${item.subtotal}"></td>
+
+						</tr>
+						<tr>
+							<td></td>
+							<td>total</td>
+							<td th:text="${cart.total}"></td>
+						</tr>
+					</tbody>
+				</table>
+			<a th:href="@{/checkout}">Order Now</a>	
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

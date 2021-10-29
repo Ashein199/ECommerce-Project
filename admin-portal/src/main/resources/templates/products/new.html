@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head::app-head">
+<body>
+	<div th:replace="fragments/navbar::app-navbar"></div>
+	<div class="container-fluid py-5">
+		<div class="row">
+			<div th:insert="fragments/sidebar::products" class="col-md-3">
+			</div>
+			<div class="col-md-9">
+				<!-- Product Form -->
+				<div class="row">
+					<div class="col-md-6 mx-auto">
+						<form th:action="@{/products}" th:object="${product}" method="POST">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Product Name</label> 
+								<input type="text" class="form-control" id="exampleInputEmail1" th:field="*{name}"
+									aria-describedby="emailHelp" placeholder="Enter name">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Price</label> <input
+									type="text" class="form-control" id="exampleInputPassword1" th:field="*{price}"
+									placeholder="Price">
+							</div>
+							<div class="form-group">
+								<label>Category</label> 
+								<select class="form-control"  name="category">
+								   <option th:each="category:${categories}" th:text="${category.name}" th:value="${category.id}"></option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Image Url</label> <input
+									type="text" class="form-control" id="exampleInputPassword1" th:field="*{imageUrl}"
+									placeholder="Image Url">
+							</div>
+							<button type="submit" class="btn btn-primary btn-block">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
